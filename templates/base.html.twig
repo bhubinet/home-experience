@@ -30,14 +30,14 @@
 
     <body id="webcontent">
     <header class="header-content">
-        <a href="#" style="margin-left: 50px">
+        <a href="{{ path('home') }}" style="margin-left: 50px">
             <img class="logo_header" src="{{ asset('assets/Logo_white.png') }}">
         </a>
         <nav class="nav-content">
-            <a href="#">FILMS</a>
-            <a href="#">MUSIQUE</a>
-            <a href="#">PROJETS</a>
-            <a href="#">CONTACT</a>
+            <a href="#">{{ 'word.films' |trans|upper }}</a>
+            <a href="#">{{ 'word.musique' |trans|upper }}</a>
+            <a href="#">{{ 'word.projets' |trans|upper }}</a>
+            <a href="#">{{ 'word.contact' |trans|upper }}</a>
         </nav>
     </header>
     {% block javascripts %}
