@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+{% block title %}Home Experience{% endblock %}
+{% block body %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(() => {
+                $('.black-background').remove();
+                $('.lds-ellipsis').remove();
+            }, 2000);
+            //Marzipano JS
+            var panoElement = $('#webcontent')[0];
+            var viewerOpts = {
+                controls: {
+                    mouseViewMode: 'drag'    // drag|qtvr
+                }
+            };
+
+            var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
+
+            // Equirectangle
+            var levels = [
+                {tileSize: 512, size: 512},
+                {tileSize: 512, size: 1024}
+            ];
+
+            var source = Marzipano.ImageUrlSource.fromString("../assets/MilleniumPano.jpg");
+
+            // Create geometry.
+            var geometry = new Marzipano.EquirectGeometry([{width: 4000}]);
+
+            // Create view.
+            var limiter = Marzipano.RectilinearView.limit.traditional(1024, 100 * Math.PI / 180);
+            var view = new Marzipano.RectilinearView({yaw: 128 * Math.PI / 180}, limiter);
+
+            // Create scene.
+            var scene = viewer.createScene({
+                source: source,
+                geometry: geometry,
+                view: view,
+                pinFirstLevel: true
+            });
+
+            var autorotate = Marzipano.autorotate({
+                yawSpeed: 0.1,         // Yaw rotation speed
+                targetPitch: 0,        // Pitch value to converge to
+                targetFov: Math.PI / 2   // Fov value to converge to
+            });
+
+            // Display scene.
+            scene.switchTo();
+
+            // Start autorotation immediately
+            viewer.setIdleMovement(2000, autorotate);
+        });
+    </script>
+
+    <div class="black-background"></div>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+{% endblock %}

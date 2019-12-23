@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/favicons/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/favicons/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/favicons/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/favicons/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/favicons/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/favicons/apple-icon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/favicons/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/favicons/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicons/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('assets/favicons/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicons/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicons/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicons/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('assets/favicons/manifest.json') }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/public/assets/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('css/pointer.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('fonts/Raleway/Raleway-Regular.ttf') }}" />
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body id="webcontent">
+    <header class="header-content">
+        <a href="#" style="margin-left: 50px">
+            <img class="logo_header" src="{{ asset('assets/Logo_white.png') }}">
+        </a>
+        <nav class="nav-content">
+            <a href="#">FILMS</a>
+            <a href="#">MUSIQUE</a>
+            <a href="#">PROJETS</a>
+            <a href="#">CONTACT</a>
+        </nav>
+    </header>
+    {% block javascripts %}
+        <script src="{{ asset('js/pointer.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/three.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/panolens.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/marzipano.js') }}" type="text/javascript"></script>
+    {% endblock %}
+        {% block body %}{% endblock %}
+    </body>
+
+    <script>
+        $(document).ready(function() {
+            init_pointer({
+                pointerColor: "#fff",
+                ringSize: 15,
+                ringClickSize: 10
+            });
+
+            // Panolens JS
+            /*            const panorama = new PANOLENS.ImagePanorama( '../assets/panorama.jpg' );
+                        const viewer = new PANOLENS.Viewer();
+                        viewer.OrbitControls.noZoom = true;
+                        viewer.enableEffect( PANOLENS.MODES.NORMAL );
+                        viewer.add( panorama );*/
+        });
+    </script>
+</html>
