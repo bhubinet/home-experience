@@ -1,29 +1,39 @@
 {% extends "base.html.twig" %}
 {% block title %}Home Experience{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}" type="text/css" media="all" />
+{% endblock %}
 {% block body %}
     <script type="text/javascript">
         $(document).ready(function() {
+            // Loader
             setTimeout(() => {
                 $('.black-background').remove();
                 $('.lds-ellipsis').remove();
             }, 2000);
-            //Marzipano JS
+
+
+            // Marzipano JS
+            /**
+             * yaw = radius
+             * pitch = height
+             **/
             var panoElement = $('#webcontent')[0];
             var viewerOpts = {
                 controls: {
-                    mouseViewMode: 'drag'    // drag|qtvr
+                    mouseViewMode: 'drag'
                 }
             };
 
             var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
 
-            // Equirectangle
+            // Equirectangular panorama
             var levels = [
                 {tileSize: 512, size: 512},
                 {tileSize: 512, size: 1024}
             ];
 
-            var source = Marzipano.ImageUrlSource.fromString("../assets/MilleniumPano.jpg");
+            var source = Marzipano.ImageUrlSource.fromString("../assets/panoramic/MilleniumPano.jpg");
 
             // Create geometry.
             var geometry = new Marzipano.EquirectGeometry([{width: 4000}]);
@@ -40,20 +50,35 @@
                 pinFirstLevel: true
             });
 
+            // Autorotation
             var autorotate = Marzipano.autorotate({
                 yawSpeed: 0.1,         // Yaw rotation speed
                 targetPitch: 0,        // Pitch value to converge to
                 targetFov: Math.PI / 2   // Fov value to converge to
             });
 
+            // Hotspot
+            var imgHotspot = document.createElement('img');
+            imgHotspot.src = '../assets/shapes/circle-shape-outline.png';
+            imgHotspot.classList.add('hotspot');
+            imgHotspot.addEventListener('click', function() {
+                console.log('hello');
+            });
+
+            var position = { yaw: 2.55, pitch: -0.15 };
+
+            scene.hotspotContainer().createHotspot(imgHotspot, position);
+
             // Display scene.
             scene.switchTo();
 
-            // Start autorotation immediately
+            // Start autorotation after 2 seconds
             viewer.setIdleMovement(2000, autorotate);
         });
     </script>
 
+    {# Loader #}
     <div class="black-background"></div>
     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    {# End Loader #}
 {% endblock %}

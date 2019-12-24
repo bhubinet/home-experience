@@ -19,7 +19,8 @@
         <meta name="msapplication-TileImage" content="/public/assets/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <title>{% block title %}{% endblock %}</title>
 
         <link rel="stylesheet" href="{{ asset('css/global.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('css/pointer.css') }}" type="text/css" media="all" />
@@ -31,7 +32,7 @@
     <body id="webcontent">
     <header class="header-content">
         <a href="{{ path('home') }}" style="margin-left: 50px">
-            <img class="logo_header" src="{{ asset('assets/Logo_white.png') }}">
+            <img class="logo_header" src="{{ asset('assets/logo/Logo_white.png') }}">
         </a>
         <nav class="nav-content">
             <a href="#">{{ 'word.films' |trans|upper }}</a>
@@ -43,8 +44,6 @@
     {% block javascripts %}
         <script src="{{ asset('js/pointer.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/three.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/panolens.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/marzipano.js') }}" type="text/javascript"></script>
     {% endblock %}
         {% block body %}{% endblock %}
@@ -57,13 +56,6 @@
                 ringSize: 15,
                 ringClickSize: 10
             });
-
-            // Panolens JS
-            /*            const panorama = new PANOLENS.ImagePanorama( '../assets/panorama.jpg' );
-                        const viewer = new PANOLENS.Viewer();
-                        viewer.OrbitControls.noZoom = true;
-                        viewer.enableEffect( PANOLENS.MODES.NORMAL );
-                        viewer.add( panorama );*/
         });
     </script>
 </html>
